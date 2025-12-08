@@ -3,3 +3,6 @@ venv/
 __pycache__/
 Structure
 key_bot
+eval "$(ssh-agent -s)"
+eval "$(ssh-agent -s)".pub
+db.py
