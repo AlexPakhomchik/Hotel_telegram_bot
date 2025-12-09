@@ -6,6 +6,7 @@ from routers.booking import booking_router
 from db import create_pool
 from menu import main_menu
 from config import BOT_TOKEN
+from routers.staff import staff_router
 class DbPoolMiddleware(BaseMiddleware):
     def __init__(self, pool):
         super().__init__()
@@ -21,6 +22,7 @@ dp = Dispatcher()
 router = Router()
 dp.include_router(router)
 dp.include_router(booking_router)
+dp.include_router(staff_router)
 
 @router.message(CommandStart())
 async def start(message: types.Message):
