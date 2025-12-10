@@ -1,41 +1,16 @@
 from aiogram import Router, types
-from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
-from aiogram.fsm.state import StatesGroup,State
+from states.booking_states import BookingStates, EditBookingStates, CancelBookingStates
 from aiogram.fsm.context import FSMContext
 from menu import main_menu
+from keyboards.booking_menu import booking_menu
+
 import datetime
 
-class BookingStates(StatesGroup):
-    room_number = State()
-    guest_name = State()
-    check_in = State()
-    check_out = State()
-    status = State()
 
-class EditBookingStates(StatesGroup):
-    booking_id = State()
-    room_number = State()
-    guest_name = State()
-    check_in = State()
-    check_out = State()
-    status = State()
-
-class CancelBookingStates(StatesGroup):
-    booking_id = State()
 
 booking_router = Router()
 
-booking_menu = ReplyKeyboardMarkup(
-    keyboard=[
-        [KeyboardButton(text='Просмотр текущих бронирований📋')],
-        [KeyboardButton(text='Добавить бронь➕')],
-        [KeyboardButton(text='Изменить бронь✏️')],
-        [KeyboardButton(text='Отменить бронь❌')],
-        [KeyboardButton(text='Проверка загруженности номеров📊')],
-        [KeyboardButton(text='Назад в главное меню⬅️')]
-    ],
-    resize_keyboard=True
-)
+
 
 @booking_router.message(lambda m: m.text == 'Управление бронированием🏨')
 async def booking_main(message: types.Message):
