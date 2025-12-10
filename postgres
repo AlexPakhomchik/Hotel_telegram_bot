@@ -1,0 +1,4 @@
+sudo -u postgres psql       - зайти в панель postgres
+\c hotel_db                 - перейти в нужную базу данных
+\d staff                    - проверить таблицу
+
